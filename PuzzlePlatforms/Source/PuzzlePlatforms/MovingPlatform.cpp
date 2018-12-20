@@ -17,6 +17,8 @@ void AMovingPlatform::BeginPlay()
 		SetReplicates(true);
 		SetReplicateMovement(true);
 	}	
+	GlobalStartLocation = GetActorLocation();
+	GlobalTargetLocation= GetTransform().TransformPosition(TargetLocation);
 }
 
 void AMovingPlatform::Tick(float DeltaTime)
@@ -25,8 +27,19 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 	if (HasAuthority()) 
 	{
-		FVector Location = GetActorLocation();
-		Location += FVector(Speed * DeltaTime, 0, 0);
+		FVector Location = GetActorLocation(); 		
+		
+		float JourneyLength = (GlobalTargetLocation - GlobalStartLocation).Size();
+		float JournTravelled = (Location-GlobalStartLocation).Size();
+		 if (JournTravelled>=JourneyLength)
+		 {
+			 FVector Swap = GlobalStartLocation;
+			 GlobalStartLocation = GlobalTargetLocation;
+			 GlobalTargetLocation = Swap;
+		 }
+		//TagrgetLoaction 这里为局部坐标即为相对Actor位置的坐标  TransformPosition 转为世界坐标 
+		FVector Direction = (GlobalTargetLocation - Location).GetSafeNormal();
+		Location += Speed * DeltaTime*Direction;
 		SetActorLocation(Location);
 	}
 
