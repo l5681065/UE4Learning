@@ -13,3 +13,4 @@ APuzzlePlatformsGameMode::APuzzlePlatformsGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 }
+ 
