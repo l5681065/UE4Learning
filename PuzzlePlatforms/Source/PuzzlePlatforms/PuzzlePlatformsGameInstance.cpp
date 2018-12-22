@@ -21,6 +21,32 @@ void UPuzzlePlatformsGameInstance::Init()
 	UE_LOG(LogTemp, Warning, TEXT("Found class %s"), *MenuClass->GetName());
 }
 
+void UPuzzlePlatformsGameInstance::LoadMenu()
+{
+	if (!ensure(MenuClass != nullptr))
+	{
+		return;
+	}
+	UUserWidget *Menu=CreateWidget<UUserWidget>(this, MenuClass);
+	if (!ensure(Menu != nullptr))
+	{
+		return;
+	}
+	Menu->AddToViewport();
+	APlayerController *Playercontroller = GetFirstLocalPlayerController();
+	if (!ensure(Playercontroller != nullptr))
+	{
+		return;
+	}
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(Menu->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	Playercontroller->SetInputMode(InputModeData);
+	Playercontroller->bShowMouseCursor=true;
+
+}
+
 void UPuzzlePlatformsGameInstance::Host()
 { 
 
