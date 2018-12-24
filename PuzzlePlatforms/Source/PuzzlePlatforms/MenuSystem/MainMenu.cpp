@@ -5,53 +5,7 @@
 #include "Components/WidgetSwitcher.h"
 #include "Components/EditableTextBox.h"
 
-void UMainMenu::SetMenuInterface(IMenuInterface *MenuInterface)
-{
-	this->MenuInterface = MenuInterface;
-}
 
-void UMainMenu::Setup()
-{
-	this->AddToViewport();
-
-	UWorld *World = GetWorld();
-	if (!ensure(World != nullptr))
-	{
-		return;
-	}
-
-	APlayerController *Playercontroller = World->GetFirstPlayerController();
-	if (!ensure(Playercontroller != nullptr))
-	{
-		return;
-	}
-	FInputModeUIOnly InputModeData;
-	InputModeData.SetWidgetToFocus(this->TakeWidget());
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	Playercontroller->SetInputMode(InputModeData);
-	Playercontroller->bShowMouseCursor = true;
-}
-
-void UMainMenu::Teardown()
-{
-	this->RemoveFromViewport();
-	UWorld *World = GetWorld();
-	if (!ensure(World != nullptr))
-	{
-		return;
-	}
-
-	APlayerController *Playercontroller = World->GetFirstPlayerController();
-	if (!ensure(Playercontroller != nullptr))
-	{
-		return;
-	}
-	FInputModeGameOnly InputModeData;
-	Playercontroller->SetInputMode(InputModeData);
-	Playercontroller->bShowMouseCursor = false;
-
-}
 
 bool UMainMenu::Initialize()
 {
@@ -81,6 +35,11 @@ bool UMainMenu::Initialize()
 		 return false;
 	 }
 	 ConfirmJoinButton->OnClicked.AddDynamic(this,&UMainMenu::JoinServer);
+	 if (!ensure(QuitButton != nullptr))
+	 {
+		 return false;
+	 }
+	 QuitButton->OnClicked.AddDynamic(this, &UMainMenu::QuitPressed);
 	 return true;
 }
 
@@ -103,6 +62,22 @@ void UMainMenu::OpenMainMenu()
 		return;
 	}
 	MenuSwitcher->SetActiveWidget(MainMenu);
+}
+
+void UMainMenu::QuitPressed()
+{
+	UWorld *World = GetWorld();
+	if (!ensure(World != nullptr))
+	{
+		return;
+	}
+
+	APlayerController *Playercontroller = World->GetFirstPlayerController();
+	if (!ensure(Playercontroller != nullptr))
+	{
+		return;
+	}
+	Playercontroller->ConsoleCommand("quit");
 }
 
 void UMainMenu::OpenJoinMenu()
