@@ -14,9 +14,12 @@ UCLASS()
 class PUZZLEPLATFORMS_API UMainMenu : public UMenuWidget
 {
 	GENERATED_BODY()
-
+public:
+	 void Construct();
 protected:
 		virtual bool Initialize() override;
+		virtual void NativeConstruct() override;
+
 private:
 	UPROPERTY(meta = (BindWidget))
 		class UButton *QuitButton;

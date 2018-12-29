@@ -43,6 +43,18 @@ bool UMainMenu::Initialize()
 	 return true;
 }
 
+void UMainMenu::NativeConstruct()
+{
+	Super::NativeConstruct();
+	GEngine->AddOnScreenDebugMessage(0, 2000, FColor::Green, " NavtivesConstruct!!");
+}
+
+void UMainMenu::Construct()
+{
+	Super::Construct();
+	GEngine->AddOnScreenDebugMessage(1,2000,FColor::Green," Construct!");
+}
+
 void UMainMenu::HostServer()
 {
 	if (MenuInterface!=nullptr)
