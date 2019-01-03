@@ -3,6 +3,9 @@
 #include "PuzzlePlatformsGameMode.h"
 #include "PuzzlePlatformsCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "PuzzlePlatformPlayerController.h"
+#include "PuzzlePlatformHUD.h"
+
 
 APuzzlePlatformsGameMode::APuzzlePlatformsGameMode()
 {
@@ -12,5 +15,7 @@ APuzzlePlatformsGameMode::APuzzlePlatformsGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+	PlayerControllerClass = APuzzlePlatformPlayerController::StaticClass();
+	HUDClass = APuzzlePlatformHUD::StaticClass();
 }
  
