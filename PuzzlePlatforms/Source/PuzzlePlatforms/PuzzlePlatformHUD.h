@@ -13,6 +13,10 @@ UCLASS()
 class PUZZLEPLATFORMS_API APuzzlePlatformHUD : public AHUD
 {
 	GENERATED_BODY()
+public:
+	APuzzlePlatformHUD();
+
+	TSubclassOf<UUserWidget> WBP_CompoundImage;
 protected:
 		virtual void BeginPlay() override;
 
