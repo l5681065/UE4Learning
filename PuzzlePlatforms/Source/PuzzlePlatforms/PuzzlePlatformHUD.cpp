@@ -12,10 +12,6 @@ APuzzlePlatformHUD::APuzzlePlatformHUD()
 
 void APuzzlePlatformHUD::BeginPlay()
 {
-	Super::BeginPlay();
-	if (!ensure(WBP_CompoundImage))
-	{
-		GEngine->AddOnScreenDebugMessage(1, 200, FColor::Red, "WBP_CompoundImage is null");
-	}
+	Super::BeginPlay();	
 	CreateWidget(GetWorld(), WBP_CompoundImage)->AddToViewport();
 }
