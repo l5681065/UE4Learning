@@ -6,12 +6,12 @@
 
 APuzzlePlatformHUD::APuzzlePlatformHUD()
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> W_CompoundImage(TEXT("/Game/W_compoundImage"));
-	WBP_CompoundImage = W_CompoundImage.Class;
+	//static ConstructorHelpers::FClassFinder<UUserWidget> W_CompoundImage(TEXT("/Game/W_compoundImage"));
+	//WBP_CompoundImage = W_CompoundImage.Class;
 }
 
 void APuzzlePlatformHUD::BeginPlay()
 {
 	Super::BeginPlay();	
-	CreateWidget(GetWorld(), WBP_CompoundImage)->AddToViewport();
+	//CreateWidget(GetWorld(), WBP_CompoundImage)->AddToViewport();
 }

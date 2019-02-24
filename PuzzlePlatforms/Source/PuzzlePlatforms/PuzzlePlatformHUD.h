@@ -16,7 +16,7 @@ class PUZZLEPLATFORMS_API APuzzlePlatformHUD : public AHUD
 public:
 	APuzzlePlatformHUD();
 
-	TSubclassOf<UUserWidget> WBP_CompoundImage;
+	//TSubclassOf<UUserWidget> WBP_CompoundImage;
 protected:
 		virtual void BeginPlay() override;
 
