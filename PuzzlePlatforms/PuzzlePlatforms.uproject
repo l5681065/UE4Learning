@@ -19,6 +19,11 @@
 			"Name": "AutoSizeComments",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/ae89a2c4ab384de0a3f213b23de324f3"
+		},
+		{
+			"Name": "LowEntryJson",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/c108b5a8917c4c86873edf835237beab"
 		}
 	]
 }
