@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "MenuSystem/MenuInterface.h"
+#include "OnlineSubsystem.h"
 #include "PuzzlePlatformsGameInstance.generated.h"
 
 /**
@@ -38,5 +39,11 @@ private:
 	class UMainMenu * Menu;
 	class UInGameMenu * InGameMenu;
 
+	IOnlineSessionPtr SessionInterface;
+
+	void OnCreateSessionComplete(FName Session,bool Success);
+	void OnDestorySessionComplete(FName Session,bool Success);
+
+	void CreateSession();
 
 };
