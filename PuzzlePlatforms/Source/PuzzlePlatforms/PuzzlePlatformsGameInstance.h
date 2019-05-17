@@ -33,6 +33,8 @@ public:
 
 	virtual void LoadMainMenu() override;
 
+	virtual void RefreshServerList()	override;
+
 private:
 	TSubclassOf<UUserWidget> MenuClass;
 	TSubclassOf<UUserWidget> InGameMenuClass;
@@ -43,7 +45,8 @@ private:
 
 	void OnCreateSessionComplete(FName Session,bool Success);
 	void OnDestorySessionComplete(FName Session,bool Success);
-
+	void OnFindSessionComplete(bool Success);
 	void CreateSession();
 
+	TSharedPtr<class FOnlineSessionSearch> SessionSearch; 
 };

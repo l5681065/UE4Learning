@@ -30,4 +30,6 @@ public:
 
 	virtual void Foobar() = 0; 
 
+	virtual void RefreshServerList() = 0;
+
 };
